@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,464 +10,96 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #F8F8F6;
-      --ink: #1A1A1A;
-      --accent: #4A6FA5;
-      --muted: #8B8B8B;
-      --rule: #E2E2DE;
-      --tag-bg: #EEF2F8;
+      --bg: #F8F8F6; --ink: #1A1A1A; --accent: #4A6FA5; --muted: #8B8B8B; --rule: #E2E2DE; --tag-bg: #EEF2F8;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(248,248,246,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      height: 56px;
-    }
-
-    .nav-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(248,248,246,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; padding: 0 clamp(1.5rem, 5vw, 4rem); height: 56px; }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
-
-    /* ── LAYOUT ── */
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 clamp(1.5rem, 5vw, 2rem);
-    }
-
-    section {
-      padding-top: 70px;
-    }
-
-    /* ── SECTION HEADER ── */
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      margin-bottom: 0.2rem;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 400;
-      margin-bottom: 0.4rem;
-    }
-
-    /* Data-bar motif — the signature element */
-    .data-bar {
-      display: flex;
-      gap: 3px;
-      margin-bottom: 1.25rem;
-    }
-
-    .data-bar span {
-      height: 3px;
-      border-radius: 2px;
-      background: var(--accent);
-      opacity: 0.25;
-    }
-
+    .nav-links a.active { color: var(--accent); }
+    main { max-width: 860px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 2rem); }
+    section { padding-top: 70px; }
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.2rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; margin-bottom: 0.4rem; }
+    .data-bar { display: flex; gap: 3px; margin-bottom: 1.25rem; }
+    .data-bar span { height: 3px; border-radius: 2px; background: var(--accent); opacity: 0.25; }
     .data-bar span:nth-child(1) { width: 48px; opacity: 0.9; }
     .data-bar span:nth-child(2) { width: 28px; opacity: 0.5; }
     .data-bar span:nth-child(3) { width: 16px; opacity: 0.25; }
-    .data-bar span:nth-child(4) { width: 8px;  opacity: 0.15; }
-
-    /* ── BIO ── */
-    #bio {
-      padding-top: 140px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .bio-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .bio-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 7vw, 4.5rem);
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.25rem;
-    }
-
-    .bio-name em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .bio-desc {
-      font-size: 1.05rem;
-      font-weight: 300;
-      color: #444;
-      max-width: 540px;
-      line-height: 1.75;
-      margin-bottom: 2rem;
-    }
-
-    .bio-links {
-      display: flex;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .bio-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      color: var(--ink);
-      text-decoration: none;
-      border-bottom: 1.5px solid var(--accent);
-      padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
+    .data-bar span:nth-child(4) { width: 8px; opacity: 0.15; }
+    #bio { padding-top: 140px; padding-bottom: 40px; border-bottom: 1px solid var(--rule); }
+    .bio-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; }
+    .bio-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 7vw, 4.5rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+    .bio-name em { font-style: italic; color: var(--accent); }
+    .bio-desc { font-size: 1.05rem; font-weight: 300; color: #444; max-width: 540px; line-height: 1.75; margin-bottom: 2rem; }
+    .bio-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .bio-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--accent); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
     .bio-links a:hover { color: var(--accent); }
-
-    /* ── EDUCATION ── */
-    .edu-block {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .edu-school {
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .edu-degree {
-      font-size: 0.92rem;
-      color: #555;
-      margin-top: 0.2rem;
-      line-height: 1.5;
-    }
-
-    .edu-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-      margin-top: 0.15rem;
-    }
-
-    .edu-gpa {
-      display: inline-block;
-      margin-top: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      background: var(--tag-bg);
-      color: var(--accent);
-      padding: 0.2em 0.6em;
-      border-radius: 4px;
-    }
-
-    /* ── EXPERIENCE ── */
-    .exp-entry {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .exp-entry:last-child { border-bottom: none; margin-bottom: -0.5rem;}
-
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.5rem;
-    }
-
-    .exp-title {
-      font-size: 0.98rem;
-      font-weight: 500;
-    }
-
-    .exp-company {
-      font-size: 0.88rem;
-      color: var(--accent);
-      margin-top: 0.1rem;
-    }
-
-    .exp-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-      margin-top: 0.15rem;
-    }
-
-    .exp-bullets {
-      list-style: none;
-      margin-top: 0.6rem;
-    }
-
-    .exp-bullets li {
-      font-size: 0.9rem;
-      color: #444;
-      padding-left: 1.2rem;
-      position: relative;
-      margin-bottom: 0.35rem;
-      line-height: 1.6;
-    }
-
-    .exp-bullets li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 0.8rem;
-    }
-
-    /* ── PROJECTS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .project-card {
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 1.5rem;
-      background: #fff;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 20px rgba(74,111,165,0.08);
-    }
-
-    .project-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      line-height: 1.3;
-    }
-
-    .project-desc {
-      font-size: 0.88rem;
-      color: #555;
-      line-height: 1.65;
-      flex: 1;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .project-image {
-      width: 100%;
-      border-radius: 4px;
-      border: 1px solid var(--rule);
-      object-fit: cover;
-     /* max-height: 260px;*/ 
-    }
-
-    .project-link {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 1px;
-      align-self: flex-start;
-      transition: opacity 0.2s;
-    }
-
-    .project-link:hover { opacity: 0.65; }
-
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
-      background: var(--tag-bg);
-      color: var(--accent);
-      padding: 0.25em 0.6em;
-      border-radius: 4px;
-    }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .skill-group-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .skill-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .skill-tag {
-      font-size: 0.82rem;
-      background: var(--tag-bg);
-      color: var(--ink);
-      padding: 0.3em 0.75em;
-      border-radius: 4px;
-      border: 1px solid #dce6f3;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      margin-top: 80px;
-      padding: 2rem 0 3rem;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
+    .edu-block { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+    .edu-school { font-size: 1rem; font-weight: 500; }
+    .edu-degree { font-size: 0.92rem; color: #555; margin-top: 0.2rem; line-height: 1.5; }
+    .edu-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; white-space: nowrap; margin-top: 0.15rem; }
+    .edu-gpa { display: inline-block; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; background: var(--tag-bg); color: var(--accent); padding: 0.2em 0.6em; border-radius: 4px; }
+    footer { margin-top: 80px; padding: 2rem 0 3rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--accent); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 1rem; }
-      nav { padding: 0 1.25rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
-      html { scroll-behavior: auto; }
-    }
+    @media (max-width: 600px) { .nav-links { gap: 1rem; } nav { padding: 0 1.25rem; } }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
-
 <nav>
   <span class="nav-name">Julianna Wang</span>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
+    <li><a href="index.html" class="active">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="projects.html">Projects</a></li>
   </ul>
 </nav>
-
 <main>
-
   <!-- BIO -->
-<section id="bio">
-  <div style="display: flex; align-items: flex-start; gap: 3rem; flex-wrap: nowrap;">
-    <div>
-      <p class="bio-eyebrow">Based in Evanston, IL</p>
-      <div style="display: flex; align-items: flex-start; gap: 2rem;">
-        <h1 class="bio-name">Julianna<br><em>Wang</em></h1>
-        <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem;">
-          <video autoplay loop muted playsinline
-            style="width: 200px; border-radius: 12px;">
-            <source src="0001-0268.mp4" type="video/mp4">
-          </video>
-          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; text-align: center;">
-            © <a href="https://github.com/Khelone" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--muted);">Khelone</a>
-          </p>
+  <section id="bio">
+    <div style="display: flex; align-items: flex-start; gap: 3rem; flex-wrap: nowrap;">
+      <div>
+        <p class="bio-eyebrow">Based in Evanston, IL</p>
+        <div style="display: flex; align-items: flex-start; gap: 2rem;">
+          <h1 class="bio-name">Julianna<br><em>Wang</em></h1>
+          <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem;">
+            <video autoplay loop muted playsinline style="width: 200px; border-radius: 12px;">
+              <source src="0001-0268.mp4" type="video/mp4">
+            </video>
+            <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; text-align: center;">
+              © <a href="https://github.com/Khelone" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--muted);">Khelone</a>
+            </p>
+          </div>
+        </div>
+        <p class="bio-desc">
+          Analyst with backgrounds in Cognitive Science, Data Science, and Flute Performance.
+          Passionate about data visualization, the performing arts, and all things seals 🦭.
+        </p>
+        <div class="bio-links">
+          <a href="mailto:julianna.wang02@gmail.com">julianna.wang02@gmail.com</a>
+          <a href="https://github.com/oatlattejules" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/julianna-wang-65a013241" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="tel:9802598081">980-259-8081</a>
         </div>
       </div>
-      <p class="bio-desc">
-        Analyst with backgrounds in Cognitive Science, Data Science, and Flute Performance.
-        Passionate about data visualization, the performing arts, and all things seals 🦭.
-      </p>
-      <div class="bio-links">
-        <a href="mailto:julianna.wang02@gmail.com">julianna.wang02@gmail.com</a>
-        <a href="https://github.com/oatlattejules" target="_blank" rel="noopener">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/julianna-wang-65a013241" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="tel:9802598081">980-259-8081</a>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <!-- ABOUT / EDUCATION -->
+  <!-- EDUCATION -->
   <section id="about">
     <p class="section-label">01 — Education</p>
     <h2 class="section-title">Background</h2>
     <div class="data-bar"><span></span><span></span><span></span><span></span></div>
-
     <div class="edu-block">
       <div>
         <div class="edu-school">Northwestern University</div>
-        <div class="edu-degree">
-          B.A. in Cognitive Science &amp; B.M. in Flute Performance, minor in Data Science
-        </div>
+        <div class="edu-degree">B.A. in Cognitive Science &amp; B.M. in Flute Performance, minor in Data Science</div>
         <span class="edu-gpa">GPA 3.70 / 4.0</span>
       </div>
       <div>
@@ -476,181 +109,14 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <p class="section-label">02 — Experience</p>
-    <h2 class="section-title">Work</h2>
-    <div class="data-bar"><span></span><span></span><span></span><span></span></div>
-
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Intern</div>
-          <div class="exp-company">LegiNation · Remote</div>
-        </div>
-        <div class="exp-date">Jul – Sep 2025</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Designed and implemented a scalable taxonomy to classify 3M+ bills by Industry, Theme, and Topic, improving organization for 11.6M+ users on BillTrack50</li>
-      </ul>
-    </div>
-
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Teaching Assistant</div>
-          <div class="exp-company">Northwestern University · Department of Statistics</div>
-        </div>
-        <div class="exp-date">Sep 2024 – Jun 2026</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Held weekly office hours for 130+ students, helping with homework, in-class assignments, and exam preparation</li>
-      </ul>
-    </div>
-
-    <div class="exp-entry">
-      <div class="exp-header">
-        <div>
-          <div class="exp-title">Managing Director of Website Development</div>
-          <div class="exp-company"><a href="https://thenurj.com" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent);">Northwestern Undergraduate Research Journal</a></div>
-        </div>
-        <div class="exp-date">Oct 2022 – Jun 2026</div>
-      </div>
-      <ul class="exp-bullets">
-        <li>Led a 5-person team to redesign a 71-page website, modernizing graphics and layouts</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <p class="section-label">03 — Projects</p>
-    <h2 class="section-title">Things I've Built</h2>
-    <div class="data-bar"><span></span><span></span><span></span><span></span></div>
-
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-name">League of Legends Personal Dashboard</div>
-        <div class="project-tags">
-          <span class="tag">R</span>
-          <span class="tag">Shiny</span>
-          <span class="tag">ggplot2</span>
-          <span class="tag">Excel</span>
-        </div>
-        <p class="project-desc">
-          Collected 3 months of personal match data via the Riot Games API and built a dashboard surfacing insights around champion performance, win rates, KDA trends, and gameplay patterns over time.
-        </p>
-        <a href="https://oatlattejules.shinyapps.io/stat_302_final_project/" target="_blank" rel="noopener" class="project-link">View Live App ↗</a>
-      </div>
-
-      <div class="project-card">
-        <div class="project-name">American Ninja Warrior Obstacle Analysis</div>
-        <div class="project-tags">
-          <span class="tag">R</span>
-          <span class="tag">Shiny</span>
-          <span class="tag">ggplot2</span>
-        </div>
-        <p class="project-desc">
-          Analyzed obstacle usage across seasons 1–10 to identify recurring finals course patterns. Built an interactive R Shiny dashboard using 2021–2023 athlete data to visualize obstacle frequency by stage and track athlete outcomes.
-        </p>
-        <a href="https://oatlattejules.shinyapps.io/ANW_Visualization/" target="_blank" rel="noopener" class="project-link">View Live App ↗</a>
-      </div>
-
-      <div class="project-card">
-        <div class="project-name">Marketing Campaign Analytics Dashboard</div>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">Tableau</span>
-        </div>
-        <p class="project-desc">
-          Created 3 Tableau dashboards communicating campaign performance, customer demographics, and spending trends. Cleaned and transformed raw datasets with Python and Pandas to enable data-driven marketing insights.
-        </p>
-        <a href="https://public.tableau.com/app/profile/julianna.wang/viz/ifood_dashboards/Dashboard1" target="_blank" rel="noopener" class="project-link">View on Tableau Public ↗</a>
-      </div>
-
-      <div class="project-card">
-        <div class="project-name">Airbnb Superhost Prediction Model</div>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">Pandas</span>
-        </div>
-        <p class="project-desc">
-          Built a classification model predicting Airbnb Superhost status using logistic regression with GridSearch hyperparameter tuning, achieving 93.86% accuracy. Engineered features from guest reviews, host activity, and property attributes. Ranked 3rd out of 180 students.
-        </p>
-      </div>
-
-      <div class="project-card">
-        <img src="sales-chart.png" alt="U.S. Regional Sales chart showing Northwest decline" class="project-image" />
-        <div class="project-name">North American Sales Data Visualization</div>
-        <div class="project-tags">
-          <span class="tag">Excel</span>
-          <span class="tag">PowerPoint</span>
-        </div>
-        <p class="project-desc">
-          Analyzed Q1 sales data across the US, Mexico, and Canada. Identified that Canada and Mexico were driving regional growth while the US Northwest underperformed. Uncovered a 7% domestic decline despite the US holding 53% of global sales.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-label">04 — Skills</p>
-    <h2 class="section-title">Toolkit</h2>
-    <div class="data-bar"><span></span><span></span><span></span><span></span></div>
-
-    <div class="skills-grid">
-      <div>
-        <div class="skill-group-label">Languages</div>
-        <div class="skill-items">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">R</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Python Libraries</div>
-        <div class="skill-items">
-          <span class="skill-tag">Pandas</span>
-          <span class="skill-tag">NumPy</span>
-          <span class="skill-tag">scikit-learn</span>
-          <span class="skill-tag">pyodbc</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Visualization</div>
-        <div class="skill-items">
-          <span class="skill-tag">Tableau</span>
-          <span class="skill-tag">ggplot2</span>
-          <span class="skill-tag">R Shiny</span>
-          <span class="skill-tag">tidyverse</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Tools</div>
-        <div class="skill-items">
-          <span class="skill-tag">Excel</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Claude API</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer>
     <span>© 2026 Julianna Wang</span>
     <div style="display:flex; gap: 1.5rem;">
       <a href="mailto:julianna.wang02@gmail.com">Email</a>
-      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/oatlattejules" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/julianna-wang-65a013241" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </footer>
-
 </main>
 </body>
 </html>
