@@ -121,7 +121,7 @@
     <div class="gallery-strip">
       <img src="Visualizations/bechdeltest.png" alt="Distribution of Bechdel Test Ratings Across Movie Genres 1960-2020" class="gallery-thumb" onclick="openLightbox(0)" />
       <img src="Visualizations/emmyawards.png" alt="Wins to Nominations Ratios for Major TV/Film Companies 2020-2021" class="gallery-thumb" onclick="openLightbox(1)" />
-      <img src="Visualizations/lameloball2024.png" alt="Lamelo Ball Athlete Stat Wheel 2024" class="gallery-thumb" onclick="openLightbox(2)" />
+      <img src="Visualizations/lameloball2024stats.png" alt="Lamelo Ball Athlete Stat Wheel 2024" class="gallery-thumb" onclick="openLightbox(2)" />
       <img src="Visualizations/usamedianincome.png" alt="Median Income Across the US" class="gallery-thumb" onclick="openLightbox(3)" />
     </div>
   </section>
@@ -179,5 +179,39 @@
     </div>
   </footer>
 </main>
+  <script>
+  const images = document.querySelectorAll('.gallery-thumb');
+  let current = 0;
+
+  function openLightbox(index) {
+    current = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  function changeImage(dir) {
+    current = (current + dir + images.length) % images.length;
+    updateLightbox();
+  }
+
+  function updateLightbox() {
+    const img = images[current];
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb-img').alt = img.alt;
+    document.getElementById('lb-caption').textContent = img.alt;
+  }
+
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') changeImage(-1);
+    if (e.key === 'ArrowRight') changeImage(1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
 </body>
 </html>
