@@ -133,7 +133,7 @@
 
     .bio-name {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
       font-weight: 400;
       line-height: 1.08;
       letter-spacing: -0.01em;
@@ -425,11 +425,22 @@
 <main>
 
   <!-- BIO -->
-  <section id="bio">
+<section id="bio">
   <div style="display: flex; align-items: flex-start; gap: 3rem; flex-wrap: nowrap;">
     <div>
       <p class="bio-eyebrow">Based in Evanston, IL</p>
-      <h1 class="bio-name">Julianna<br><em>Wang</em></h1>
+      <div style="display: flex; align-items: flex-start; gap: 2rem;">
+        <h1 class="bio-name">Julianna<br><em>Wang</em></h1>
+        <div style="display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem;">
+          <video autoplay loop muted playsinline
+            style="width: 200px; border-radius: 12px;">
+            <source src="0001-0268.mp4" type="video/mp4">
+          </video>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; text-align: center;">
+            © <a href="https://github.com/Khelone" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--muted);">Khelone</a>
+          </p>
+        </div>
+      </div>
       <p class="bio-desc">
         Analyst with backgrounds in Cognitive Science, Data Science, and Flute Performance.
         Passionate about data visualization, the performing arts, and all things seals 🦭.
@@ -441,17 +452,8 @@
         <a href="tel:9802598081">980-259-8081</a>
       </div>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-  <video autoplay loop muted playsinline
-    style="width: 220px; border-radius: 12px; opacity: 0.9;">
-    <source src="0001-0268.mp4" type="video/mp4">
-  </video>
-  <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); margin-top: 0.5rem; text-align: center;">
-    © <a href="https://github.com/Khelone" target="_blank" rel="noopener" style="color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--muted);">Khelone</a>
-  </p>
-</div>
   </div>
-  </section>
+</section>
 
   <!-- ABOUT / EDUCATION -->
   <section id="about">
