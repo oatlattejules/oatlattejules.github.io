@@ -42,6 +42,20 @@
     .skill-group-label { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.6rem; }
     .skill-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .skill-tag { font-size: 0.82rem; background: var(--tag-bg); color: var(--ink); padding: 0.3em 0.75em; border-radius: 4px; border: 1px solid #dce6f3; }
+    .gallery-strip { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .gallery-thumb { width: 160px; height: 100px; object-fit: cover; border-radius: 6px; border: 1px solid var(--rule); cursor: pointer; opacity: 0.85; transition: opacity 0.2s, border-color 0.2s; }
+    .gallery-thumb:hover { opacity: 1; border-color: var(--accent); }
+    #lightbox { display: none; position: fixed; inset: 0; background: rgba(26,26,26,0.88); z-index: 200; align-items: center; justify-content: center; }
+    #lightbox.open { display: flex; }
+    #lightbox-inner { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; max-width: 90vw; }
+    #lb-img { max-width: 80vw; max-height: 75vh; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+    #lb-caption { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; }
+    .lb-close { position: absolute; top: -2rem; right: 0; background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1rem; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: color 0.2s; }
+    .lb-close:hover { color: #fff; }
+    .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 1rem; padding: 0.5rem 0.75rem; border-radius: 4px; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: color 0.2s, border-color 0.2s; }
+    .lb-arrow:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+    .lb-prev { left: -3.5rem; }
+    .lb-next { right: -3.5rem; }
     footer { margin-top: 80px; padding: 2rem 0 3rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--accent); }
